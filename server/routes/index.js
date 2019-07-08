@@ -1,10 +1,12 @@
 import express from 'express';
+import bcrypt from 'bcrypt';
 import db from '../controllers/users';
 import bus from '../controllers/bus';
 import trip from '../controllers/trip';
 import booking from '../controllers/booking';
 
 const router = express.Router();
+const hash = bcrypt.hashSync(req.body.password, 10);
 
 // ROUTES FOR USERS
 router.get('/users', db.getUsers);
