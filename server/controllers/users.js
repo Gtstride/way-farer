@@ -33,6 +33,7 @@ const getUserById = (request, response) => {
   const id = parseInt(request.params.id, 10);
   pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
     if (error) {
+      console.log(error);
       throw error;
     }
     response.status(200).json(results.rows);
@@ -43,7 +44,7 @@ const getUserById = (request, response) => {
 const createUser = (request, response) => {
 //   const body = firstname, lastname, email, password, isadmin,
   const hash = bcrypt.hashSync(request.body.password, 10);
-  // create token for user with JWT here. 
+  // create token for user with JWT here.
   // eslint-disable-next-line no-unused-vars
   pool.query('INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ($1, $2, $3, $4, $5)', [request.body.first_name, request.body.last_name, request.body.email, hash, false], (error, results) => {
     if (error) {
@@ -71,22 +72,24 @@ const updateUser = (request, response) => {
   const id = parseInt(request.params.id, 10);
   const hash = bcrypt.hashSync(request.body.password, 10);
 
-  // const
-  //     {
-  //       first_name,
-  //       last_name,
-  //       email,
-  //       password,
-  //     } = request.body;
+ /* const { first_name, last_name, email, password,
+  } = request.body; */
 
   pool.query(
     'UPDATE users SET "first_name" = $1, "email" = $3, "last_name" = $2 WHERE id = $4',
     [request.body.first_name, request.body.email, request.body.last_name, hash, id],
-    (error, results) => {
+    (error, _results) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`User with ID: ${results.id}  modified `);
+      response.status(200).send(
+        {
+          status: 'success',
+          data: {
+            message: 'User modified successfully',
+          },
+        },
+);
     },
   );
 };

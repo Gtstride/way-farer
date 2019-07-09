@@ -8,7 +8,7 @@ const router = express.Router();
 
 // ROUTES FOR USERS
 router.get('/api/v1/users', db.getUsers);
-router.get('/api/v1users/:id', db.getUserById);
+router.get('/api/v1/users/:id', db.getUserById);
 router.post('/api/v1/users', db.createUser);
 router.put('/api/v1/users/:id', db.updateUser);
 router.delete('/api/v1/users/:id', db.deleteUser);
