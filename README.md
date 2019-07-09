@@ -2,10 +2,13 @@
 
 Way-Farer is a transport booking site.
 
-
+<h2>Features</h2>
 <ul>
 <li> Table of content </li>
-</ul>
+<li>Users can sign up</li>
+<li>Users can book seat on a trip</li>
+<li>Users can see all their bookings</li>
+</ul> 
 
 
 <h2>Usage</h2>
