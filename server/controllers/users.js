@@ -43,8 +43,8 @@ const getUserById = (request, response) => {
 const createUser = (request, response) => {
 //   const body = firstname, lastname, email, password, isadmin,
   const hash = bcrypt.hashSync(request.body.password, 10);
-  // create token for user with JWT here
-  
+  // create token for user with JWT here. 
+  // eslint-disable-next-line no-unused-vars
   pool.query('INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ($1, $2, $3, $4, $5)', [request.body.first_name, request.body.last_name, request.body.email, hash, false], (error, results) => {
     if (error) {
       // console.log(error);
