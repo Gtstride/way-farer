@@ -22,30 +22,30 @@ describe('Test if the user name is available', () => {
         res.should.have.status(200);
         // eslint-disable-next-line no-unused-expressions
         res.should.be.json;
-        // res.body.should.a('array');
+        res.body.should.a('array');
         done();
       });
   });
 
   //  it('should list a SINGLE user on /users/:id GET');
-  it('should add a SINGLE user on /users POST', (done) => {
-    const USER = {
-      firstName: 'busayo',
-      lastName: 'walter',
-      email: 'busayo7@gmail.com',
-    };
-    chai.request(app)
-      .post('/api/v1/users')
-      .send(USER)
-      .end((err, res) => {
-        res.should.have.status(201);
-        // eslint-disable-next-line no-unused-expressions
-        res.should.be.json;
-        res.body.should.be.a('object');
-        res.body.should.have.a.property('SUCCESS');
-        console.log(res.body.SUCCESS);
+  // it('should add a SINGLE user on /users POST', (done) => {
+  // const USER = {
+  //   firstName: 'busayo',
+  //   lastName: 'walter',
+  //   email: 'busayo7@gmail.com',
+  // };
+  // chai.request(app)
+  //   .post('/api/v1/users')
+  //   .send(USER)
+  //   .end((err, res) => {
+  //     res.should.have.status(201);
+  // eslint-disable-next-line no-unused-expressions
+  // res.should.be.json;
+  // res.body.should.be.a('object');
+  // res.body.should.have.a.property('SUCCESS');
+  // console.log(res.body.SUCCESS);
 
-        /*   res.body.SUCCESS.should.be.a('object');
+  /*   res.body.SUCCESS.should.be.a('object');
         res.body.SUCCESS.should.have.property('firstName');
         res.body.SUCCESS.should.have.property('lastName');
         res.body.SUCCESS.should.have.property('email');
@@ -54,9 +54,9 @@ describe('Test if the user name is available', () => {
         res.body.SUCCESS.lastName.should.equal('walter');
         res.body.SUCCESS.email.should.equal('busayo7@gmail.com');
         */
-        done();
-      });
-  });
+  //       done();
+  //     });
+  // });
 //   it('should update a SINGLE user on /users/:id PUT');
 //   it('should delete a SINGLE user on /users/:id DELETE');
 });

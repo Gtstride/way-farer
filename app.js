@@ -19,7 +19,6 @@ app.get('/', (request, response) => {
 });
 
 const PORT = 5000;
-// boss how far
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`App running on port ${PORT}.`);

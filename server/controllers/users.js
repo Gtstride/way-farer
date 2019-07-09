@@ -5,8 +5,9 @@
 /* eslint-disable class-methods-use-this */
 // import uuid from 'uuid';
 
-
+import bcrypt from 'bcryptjs';
 import { Pool } from 'pg';
+
 
 const pool = new Pool({
   user: 'postgres',
@@ -40,37 +41,47 @@ const getUserById = (request, response) => {
 
 // CREATE NEW USER
 const createUser = (request, response) => {
-  const
-      {
-        firstName,
-        lastName,
-        email,
-        isAdmin,
-        password,
-      } = request.body;
-
-  pool.query('INSERT INTO users ("firstName", "lastName", "email", "isAdmin", "password") VALUES ($1, $2, $3, $4, $5)', [firstName, lastName, email, isAdmin, password], (error, results) => {
+//   const body = firstname, lastname, email, password, isadmin,
+  const hash = bcrypt.hashSync(request.body.password, 10);
+  // create token for user with JWT here
+  
+  pool.query('INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ($1, $2, $3, $4, $5)', [request.body.first_name, request.body.last_name, request.body.email, hash, false], (error, results) => {
     if (error) {
+      // console.log(error);
       throw error;
     }
-    response.status(201).send(`User added with ID: ${results.insertId}`);
+    response.status(201).send(
+      {
+        status: 'success',
+        data: {
+          message: 'User added successfully',
+          user: {
+            first_name: request.body.first_name,
+            last_name: request.body.last_name,
+            email: request.body.email,
+          },
+        },
+      },
+      );
   });
 };
 
 // UPDATE A USER
 const updateUser = (request, response) => {
   const id = parseInt(request.params.id, 10);
-  const
-      {
-        firstName,
-        lastName,
-        email,
-        password,
-      } = request.body;
+  const hash = bcrypt.hashSync(request.body.password, 10);
+
+  // const
+  //     {
+  //       first_name,
+  //       last_name,
+  //       email,
+  //       password,
+  //     } = request.body;
 
   pool.query(
-    'UPDATE users SET "firstName" = $1, "email" = $3, "lastName" = $2 WHERE id = $4',
-    [firstName, email, lastName, password, id],
+    'UPDATE users SET "first_name" = $1, "email" = $3, "last_name" = $2 WHERE id = $4',
+    [request.body.first_name, request.body.email, request.body.last_name, hash, id],
     (error, results) => {
       if (error) {
         throw error;

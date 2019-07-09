@@ -1,37 +1,35 @@
 import express from 'express';
-import bcrypt from 'bcrypt';
 import db from '../controllers/users';
 import bus from '../controllers/bus';
 import trip from '../controllers/trip';
 import booking from '../controllers/booking';
 
 const router = express.Router();
-const hash = bcrypt.hashSync(req.body.password, 10);
 
 // ROUTES FOR USERS
-router.get('/users', db.getUsers);
-router.get('/users/:id', db.getUserById);
-router.post('/users', db.createUser);
-router.put('/users/:id', db.updateUser);
-router.delete('/users/:id', db.deleteUser);
+router.get('/api/v1/users', db.getUsers);
+router.get('/api/v1users/:id', db.getUserById);
+router.post('/api/v1/users', db.createUser);
+router.put('/api/v1/users/:id', db.updateUser);
+router.delete('/api/v1/users/:id', db.deleteUser);
 
 
 // ROUTE FOR BUSES
-router.get('/bus', bus.getBuses);
-router.get('/bus/:id', bus.getBusById);
+router.get('/api/v1/bus', bus.getBuses);
+router.get('/api/v1/bus/:id', bus.getBusById);
 
 
 // ROUTES FOR TRIPS
-router.get('/trip', trip.getAllTrips);
-router.get('/trip/:id', trip.getTripById);
-router.post('/trip', trip.createTrip);
-router.delete('/trip/:id', trip.deleteTrip);
+router.get('/api/v1/trip', trip.getAllTrips);
+router.get('/api/v1/trip/:id', trip.getTripById);
+router.post('/api/v1/trip', trip.createTrip);
+router.delete('/api/v1/trip/:id', trip.deleteTrip);
 
 // ROUTES FOR BOOKING
-router.get('/booking', booking.getAllBookings);
-router.get('/booking/:id', booking.getBookingById);
-router.post('/booking', booking.createBooking);
-router.delete('/booking/:id', booking.deleteBooking);
+router.get('/api/v1/booking', booking.getAllBookings);
+router.get('/api/v1/booking/:id', booking.getBookingById);
+router.post('/api/v1/booking', booking.createBooking);
+router.delete('/api/v1/booking/:id', booking.deleteBooking);
 
 
 export default router;
