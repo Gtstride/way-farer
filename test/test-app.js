@@ -28,18 +28,19 @@ describe('Test if the user name is available', () => {
   });
 
   //  it('should list a SINGLE user on /users/:id GET');
-  // it('should add a SINGLE user on /users POST', (done) => {
-  // const USER = {
-  //   firstName: 'busayo',
-  //   lastName: 'walter',
-  //   email: 'busayo7@gmail.com',
-  // };
-  // chai.request(app)
-  //   .post('/api/v1/users')
-  //   .send(USER)
-  //   .end((err, res) => {
-  //     res.should.have.status(201);
-  // eslint-disable-next-line no-unused-expressions
+
+  it('should add a SINGLE user on /users POST', (done) => {
+  const USER = {
+    first_name: 'busayo',
+    last_name: 'walter',
+    email: 'busayo7@gmail.com',
+  };
+  chai.request(app)
+    .post('/api/v1/users')
+    .send(USER)
+    .end((err, res) => {
+      res.should.have.status(201);
+  
   // res.should.be.json;
   // res.body.should.be.a('object');
   // res.body.should.have.a.property('SUCCESS');
