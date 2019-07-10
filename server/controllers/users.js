@@ -24,6 +24,15 @@ const getUsers = (_request, response) => {
     if (error) {
       throw error;
     }
+    response.status(201).send(
+      {
+        status: 'success',
+        data: {
+          message: 'Users retrieved successfully',
+          users: results,
+        },
+      },
+      );
     response.status(200).json(results.rows);
   });
 };

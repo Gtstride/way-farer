@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
-import pool from '../config.js/config';
+import pool from 'pg';
 
 const usersTable = `DROP TABLE IF EXISTS users CASCADE;
     CREATE TABLE users (
         id SERIAL PRIMARY KEY NOT NULL,
-        email CHARACTER VARYING(50) UNIQUE NOT NULL,
-        password CHARACTER VARYING(255) NOT NULL,
+        email CHARACTER VARYING(255) UNIQUE REQUIRED NOT NULL,
+        password CHARACTER VARYING(50) NOT NULL,
         first_name CHARACTER VARYING(255) NOT NULL,
         last_name CHARACTER VARYING(255) NOT NULL,
-        registeredon TIMESTAMP WITH TIME ZONE DEFAULT now()
+        created DATE
         )`;
 /**
  * Function representing UserTableHandler

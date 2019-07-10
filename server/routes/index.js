@@ -21,6 +21,7 @@ router.get('/api/v1/bus/:id', bus.getBusById);
 
 // ROUTES FOR TRIPS
 router.get('/api/v1/trip', trip.getAllTrips);
+
 router.get('/api/v1/trip/:id', trip.getTripById);
 router.post('/api/v1/trip', trip.createTrip);
 router.delete('/api/v1/trip/:id', trip.deleteTrip);
