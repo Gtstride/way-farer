@@ -32,17 +32,23 @@ const getUsers = (_request, response) => {
 const getUserById = (request, response) => {
   const id = parseInt(request.params.id, 10);
   pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
+    console.log(results);
     if (error) {
       console.log(error);
       throw error;
     }
-    response.status(200).json(results.rows);
+    response.status(200).send({
+      status: 'success',
+      data: {
+        message: 'User found!',
+      },
+    });
   });
 };
 
 // CREATE NEW USER
 const createUser = (request, response) => {
-//   const body = firstname, lastname, email, password, isadmin,
+// const body = firstname, lastname, email, password, isadmin,
   const hash = bcrypt.hashSync(request.body.password, 10);
   // create token for user with JWT here.
   // eslint-disable-next-line no-unused-vars
@@ -78,7 +84,8 @@ const updateUser = (request, response) => {
   pool.query(
     'UPDATE users SET "first_name" = $1, "email" = $3, "last_name" = $2 WHERE id = $4',
     [request.body.first_name, request.body.email, request.body.last_name, hash, id],
-    (error, _results) => {
+    (error, results) => {
+      console.log(results);
       if (error) {
         throw error;
       }
