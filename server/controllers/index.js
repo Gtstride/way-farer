@@ -1,10 +1,10 @@
-import express from 'express';
+// import express from 'express';
 import UserController from './users';
 import BookingController from './booking';
 import TripController from './trip';
 import BusController from './bus';
 
-const router = express.Router();
+// const router = express.Router();
 
 export {
   UserController,
@@ -19,4 +19,4 @@ export {
 // router.get('/trips', TripController.getAllUsers);
 // router.get('/users', BusController.getAllUsers);
 
-export default router;
+// export default router;

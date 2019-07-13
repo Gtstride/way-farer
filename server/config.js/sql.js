@@ -3,4 +3,3 @@ export const findUserById = 'SELECT * FROM users WHERE id = $1';
 export const queryUsersByEmail = 'SELECT * FROM users WHERE email = $1';
 
 // GROUP QUERY
-export const 

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
 
