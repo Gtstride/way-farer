@@ -1,16 +1,15 @@
-import { Pool } from 'pg';
+// import { Pool } from 'pg';
 import 'dotenv/config';
 
-let connect;
+import { Pool } from 'pg';
 
-if (process.env.NODE_ENV === 'test') {
-  connect = {
-    connectionString: process.env.env.TESTDB_URL,
-  };
-}
-connect = {
-  connectionString: process.env.DATABASE_URL || process.env.LOCALDB_URL,
-};
 
-const pool = new Pool(connect);
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'bookingserver',
+  password: process.env.PASSWORD,
+  port: 5432,
+});
+
 export default pool;

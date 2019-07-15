@@ -1,10 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
 
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 
-import app from '../app';
+import app from '../../app';
 
 //
 process.env.NODE_ENV = 'test';

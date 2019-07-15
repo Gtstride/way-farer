@@ -1,113 +1,83 @@
-/* eslint-disable no-console */
-/* eslint-disable array-callback-return */
-/* eslint-disable indent */
-/* eslint-disable consistent-return */
-/* eslint-disable class-methods-use-this */
-// import uuid from 'uuid';
+import { hashSync, compareSync } from 'bcryptjs';
+import pool from '../config.js/config';
+import Authentication from '../middlewares/auth';
+import { createUser, queryUsersByEmail } from '../config.js/sql';
 
-import bcrypt from 'bcryptjs';
-import { Pool } from 'pg';
+class UserController {
+  /**
+     * Create user account on the application
+     * @static
+     * @param {object} req - The request object
+     * @param {object} res - The response object
+     * @return {object} JSON object representing success
+     * @memeberof UserController
+  */
+  static async register(req, res) {
+    const {
+      email, password, first_name, last_name,
+    } = req.body;
+    const params = [
+      email,
+      hashSync(password, 10),
+      first_name,
+      last_name,
+    ];
 
-
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'bookingserver',
-  password: 'godstime',
-  port: 5432,
-});
-
-
-// GET ALL USERS ROUTE
-const getUsers = (_request, response) => {
-  pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-    if (error) {
-      throw error;
+    try {
+      const { rows } = await pool.query(createUser, params);
+      const authUser = rows[0];
+      const token = Authentication.createToken(authUser);
+      return res.status(201).json({
+        status: 'sucess',
+        data: { token },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
     }
-    response.status(200).json(results.rows);
-  });
-};
+  }
 
-// GET A USER BY ID
-const getUserById = (request, response) => {
-  const id = parseInt(request.params.id, 10);
-  pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
-    if (error) {
-      throw error;
-    }
-    response.status(200).json(results.rows);
-  });
-};
-
-// CREATE NEW USER
-const createUser = (request, response) => {
-//   const body = firstname, lastname, email, password, isadmin,
-  const hash = bcrypt.hashSync(request.body.password, 10);
-
-  // eslint-disable-next-line no-unused-vars
-  pool.query('INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ($1, $2, $3, $4, $5)', [request.body.first_name, request.body.last_name, request.body.email, hash, false], (error, results) => {
-    if (error) {
-      // console.log(error);
-      throw error;
-    }
-    response.status(201).send(
-      {
+  /**
+     * Login a user to the application
+     * @static
+     * @param {object} req - The request object
+     * @param {object} res - The response object
+     * @return {object} JSON object representing success message
+     * @memberof UserController
+     */
+  static async login(req, res) {
+    try {
+      const result = await pool.query(queryUsersByEmail, [req.body.email]);
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          status: 'error',
+          error: 'No user with such mail found',
+        });
+      }
+      const comparePassword = compareSync(req.body.password, result.rows[0].password);
+      if (!comparePassword) {
+        return res.status(401).json({
+          error: 'Incorrect Password',
+          status: 'error',
+        });
+      }
+      const { id, email, is_admin } = result.rows[0];
+      const token = Authentication.createToken(id, email, is_admin);
+      return res.status(200).json({
         status: 'success',
         data: {
-          message: 'User added successfully',
-          user: {
-            first_name: request.body.first_name,
-            last_name: request.body.last_name,
-            email: request.body.email,
-          },
+          token,
         },
-      },
-      );
-  });
-};
-
-// UPDATE A USER
-const updateUser = (request, response) => {
-  const id = parseInt(request.params.id, 10);
-  const hash = bcrypt.hashSync(request.body.password, 10);
-
-  // const
-  //     {
-  //       first_name,
-  //       last_name,
-  //       email,
-  //       password,
-  //     } = request.body;
-
-  pool.query(
-    'UPDATE users SET "first_name" = $1, "email" = $3, "last_name" = $2 WHERE id = $4',
-    [request.body.first_name, request.body.email, request.body.last_name, hash, id],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`User with ID: ${results.id}  modified `);
-    },
-  );
-};
-
-
-// DELETE A USER
-const deleteUser = (request, response) => {
-  const id = parseInt(request.params.id, 10);
-
-  pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
-    if (error) {
-      throw error;
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 'Fail',
+        message: error.message,
+      });
     }
-    response.status(200).send(`User deleted with ID: ${results.id}`);
-  });
-};
+  }
+}
 
-export default {
-  getUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser,
-};
+export default UserController;
