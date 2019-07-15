@@ -57,7 +57,6 @@ class UserController {
         });
       }
       const comparePassword = compareSync(req.body.password, result.rows[0].password);
-
       if (!comparePassword) {
         return res.status(401).json({
           error: 'Incorrect Password',
