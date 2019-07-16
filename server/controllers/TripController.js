@@ -36,9 +36,7 @@ class TripController {
 
       return res.status(201).json({
         status: 'sucess',
-        data: {
-          rows,
-        },
+        data: rows[0],
       });
     } catch (error) {
       return res.status(400).json({
@@ -65,8 +63,8 @@ class TripController {
         data: rows,
       });
     } catch (error) {
-      return res.status(500).json({
-        status: 500,
+      return res.status(400).json({
+        status: 400,
         error: 'An error occurred',
       });
     }
