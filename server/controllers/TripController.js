@@ -1,5 +1,5 @@
 import pool from '../config.js/config';
-import { createTrip, getTrip, cancelTrip } from '../config.js/sql';
+import { createTrip, getTrip } from '../config.js/sql';
 
 
 class TripController {
@@ -75,18 +75,16 @@ class TripController {
    *
    */
   static async cancelTrip(req, res) {
-    // if (!req.user.is_admin) {
-    //   return res.status(403).json({
-    //     status: 'error',
-    //     error: 'unauthorized user',
-    //   });
-    // }
-    const value = [
-      'canceled',
-      req.params.id,
-    ];
+    if (!req.user.is_admin) {
+      return res.status(403).json({
+        status: 'error',
+        error: 'unauthorized user',
+      });
+    }
+
+    const cancelTrip = `UPDATE trip SET status = 'canceled' WHERE id = ${req.params.id} returning *`;
     try {
-      const { rows } = await pool.query(cancelTrip, [value]);
+      const { rows } = await pool.query(cancelTrip);
       if (!rows[0]) {
         return res.status(404).json({
           status: 'error',
@@ -100,8 +98,7 @@ class TripController {
         },
       });
     } catch (error) {
-      // console.log(error);
-      return res.status(403).json({
+      return res.status(400).json({
         status: 'error',
         error: 'An error occurred',
       });

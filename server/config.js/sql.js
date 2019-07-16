@@ -6,7 +6,6 @@ const queryUsersByEmail = 'SELECT * FROM users WHERE email = $1';
 // Creating Trip Elements
 const createTrip = 'INSERT INTO trip (bus_id, origin, destination, trip_date, fare, status, created_on) VALUES ($1, $2, $3, $4, $5, $6, $7) returning *';
 const getTrip = 'SELECT * FROM trip';
-const cancelTrip = 'UPDATE trip SET status = $1 WHERE id = $2 returning *';
 // GROUP QUERY
 
 
@@ -44,5 +43,5 @@ export {
   checkIfBookingExistQuery,
   deleteBookingQuery,
   updateBookingQuery,
-  createUser, queryUsersByEmail, createTrip, getTrip, cancelTrip,
+  createUser, queryUsersByEmail, createTrip, getTrip,
 };
