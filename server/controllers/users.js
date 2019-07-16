@@ -59,22 +59,28 @@ class UserController {
       const comparePassword = compareSync(req.body.password, result.rows[0].password);
       if (!comparePassword) {
         return res.status(401).json({
-          error: 'Incorrect Password',
           status: 'error',
+          error: 'Incorrect Password',
         });
       }
-      const { id, email, is_admin } = result.rows[0];
+      const {
+        id, email, is_admin, first_name, last_name,
+      } = result.rows[0];
       const token = Authentication.createToken(id, email, is_admin);
       return res.status(200).json({
         status: 'success',
         data: {
           token,
+          first_name,
+          is_admin,
+          last_name,
+          email,
         },
       });
     } catch (error) {
-      return res.status(500).json({
+      return res.status(400).json({
         status: 'Fail',
-        message: error.message,
+        error: 'An error occurred',
       });
     }
   }

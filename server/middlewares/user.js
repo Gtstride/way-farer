@@ -36,9 +36,9 @@ export default class UserValidator {
         });
       }
     } catch (error) {
-      return res.status(500).json({
-        status: 500,
-        error: error.message,
+      return res.status(400).json({
+        status: 400,
+        error: 'An error occurred',
       });
     }
 
@@ -61,20 +61,20 @@ export default class UserValidator {
     if (email === undefined) {
       return res.status(400).json({
         status: 'Fail',
-        message: 'Email cannot be undefined',
+        error: 'Email cannot be undefined',
       });
     }
     if (typeof email !== 'string') {
       return res.status(400).json({
         status: 'Fail',
-        message: 'Email should be a string',
+        error: 'Email should be a string',
       });
     }
     email = email.toLowerCase().trim();
     if (email === '') {
       return res.status(400).json({
         status: 'Fail',
-        message: 'Please supply your email',
+        error: 'Please supply your email',
       });
     }
     pool.query(queryUsersByEmail, [email])
@@ -82,34 +82,34 @@ export default class UserValidator {
         if (result.rowCount === 0) {
           return res.status(401).json({
             status: 'Fail',
-            message: 'Authentication failed',
+            error: 'Authentication failed',
           });
         }
         if (password === undefined) {
           return res.status(401).json({
             status: 'Fail',
-            message: 'Password cannot be undefined',
+            error: 'Password cannot be undefined',
           });
         }
         if (typeof password !== 'string') {
           return res.status(400).json({
             status: 'Fail',
-            message: 'Password should be a string',
+            error: 'Password should be a string',
           });
         }
         password = password.trim();
         if (password === '') {
           return res.status(401).json({
             status: 'Fail',
-            message: 'Password cannot be empty',
+            error: 'Password cannot be empty',
           });
         }
         req.body.email = email;
         req.body.password = password;
         return next();
       })
-      .catch(error => res.status(500).json({
-        message: error.message,
+      .catch(error => res.status(400).json({
+        error: error.message,
       }));
   }
 }
