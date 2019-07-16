@@ -75,12 +75,12 @@ class TripController {
    *
    */
   static async cancelTrip(req, res) {
-    if (!req.user.is_admin) {
-      return res.status(403).json({
-        status: 'error',
-        error: 'unauthorized user',
-      });
-    }
+    // if (!req.user.is_admin) {
+    //   return res.status(403).json({
+    //     status: 'error',
+    //     error: 'unauthorized user',
+    //   });
+    // }
     const value = [
       'canceled',
       req.params.id,
@@ -100,7 +100,7 @@ class TripController {
         },
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return res.status(403).json({
         status: 'error',
         error: 'An error occurred',
