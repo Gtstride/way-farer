@@ -66,7 +66,7 @@ class BookController {
       const booking = await pool.query(bookTripQuery, values);
       return res.status(201).json({
         status: 'success',
-        data: booking.rows,
+        data: booking.rows[0],
       });
     } catch (errors) {
       return res.status(400).json({
