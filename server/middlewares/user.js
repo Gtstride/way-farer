@@ -1,4 +1,3 @@
-import { hashSync, compareSync } from 'bcryptjs';
 import Validator from 'validatorjs';
 import pool from '../config.js/config';
 import { queryUsersByEmail } from '../config.js/sql';
