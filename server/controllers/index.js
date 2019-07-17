@@ -1,8 +1,7 @@
 // import express from 'express';
-import UserController from './users';
-import BookingController from './booking';
+import UserController from './userController';
+import BookingController from './bookingController';
 import TripController from './TripController';
-import BusController from './bus';
 
 // const router = express.Router();
 
@@ -10,7 +9,6 @@ export {
   UserController,
   BookingController,
   TripController,
-  BusController,
 };
 
 

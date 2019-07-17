@@ -1,8 +1,8 @@
 import express from 'express';
 
 import TripController from '../controllers/TripController';
-import BookController from '../controllers/booking';
-import TripValidator from '../middlewares/trip';
+import BookController from '../controllers/bookingController';
+import TripValidator from '../middlewares/tripValidator';
 import Authentication from '../middlewares/auth';
 
 
