@@ -17,13 +17,10 @@ booking (user_id, trip_id, created_on, bus_id, trip_date, seat_number, first_nam
 const getAtripQuery = 'SELECT * FROM trip WHERE id = $1';
 
 const getAllBookingsAdminQuery = 'SELECT * FROM booking';
-
 const getAllBookingsUserQuery = 'SELECT * FROM booking WHERE email = $1';
 
 const findAuserQuery = 'SELECT * FROM users WHERE id = $1';
-
 const findAbusQuery = 'SELECT * FROM bus WHERE id = $1';
-
 const checkBookingsQuery = 'SELECT * FROM booking WHERE (trip_id = $1 and seat_number = $2)';
 
 const checkIfBookingExistQuery = 'SELECT * FROM booking WHERE (trip_id = $1 and user_id = $2)';

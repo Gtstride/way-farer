@@ -12,7 +12,7 @@ class UserController {
      * @return {object} JSON object representing success
      * @memeberof UserController
   */
-  static async register(req, res) {
+  static async signup(req, res) {
     const {
       email, password, first_name, last_name,
     } = req.body;

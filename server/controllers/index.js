@@ -1,7 +1,7 @@
 // import express from 'express';
 import UserController from './users';
 import BookingController from './booking';
-import TripController from './trip';
+import TripController from './TripController';
 import BusController from './bus';
 
 // const router = express.Router();
