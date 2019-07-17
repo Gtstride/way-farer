@@ -3,6 +3,7 @@ import pool from '../config.js/config';
 import Authentication from '../middlewares/auth';
 import { createUser, queryUsersByEmail } from '../config.js/sql';
 
+
 class UserController {
   /**
      * Create user account on the application
@@ -40,14 +41,14 @@ class UserController {
   }
 
   /**
-     * Login a user to the application
+     * Signin a user to the application
      * @static
      * @param {object} req - The request object
      * @param {object} res - The response object
      * @return {object} JSON object representing success message
      * @memberof UserController
      */
-  static async login(req, res) {
+  static async signin(req, res) {
     try {
       const result = await pool.query(queryUsersByEmail, [req.body.email]);
       if (!result.rows[0]) {
