@@ -1,16 +1,18 @@
 /* eslint-disable no-console */
 import createUsersTable from './user';
-import createBookingTable from './booking';
+import seedAdmin from './seeduser';
+// import createBookingTable from './booking';
 import createTripTable from './trip';
-import createBusTable from './bus';
+// import createBusTable from './bus';
 
 
 (async () => {
   try {
     await createUsersTable();
-    await createBookingTable();
+    await seedAdmin();
     await createTripTable();
-    await createBusTable();
+    // await createBookingTable();
+    // await createBusTable();
   } catch (error) {
     console.log(error);
   }
