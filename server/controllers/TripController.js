@@ -46,9 +46,14 @@ class TripController {
     }
   }
 
-  /** *
-   *
-   */
+  /**
+     * Get a trip
+     * @static
+     * @param {object} req - The request object
+     * @param {object} res - The response object
+     * @return {object} JSON object representing success
+     * @memeberof TripController
+  */
   static async getAllTrip(req, res) {
     try {
       const { rows } = await pool.query(getTrip);
