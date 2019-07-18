@@ -1,44 +1,20 @@
-import { hashSync, compareSync } from 'bcryptjs';
-import pool from '../config.js/config';
-import Authentication from '../middlewares/auth';
-import { createUser, queryUsersByEmail } from '../config.js/sql';
+/* eslint-disable no-console */
+/* eslint-disable array-callback-return */
+/* eslint-disable indent */
+/* eslint-disable consistent-return */
+/* eslint-disable class-methods-use-this */
 
-class UserController {
-  /**
-     * Create user account on the application
-     * @static
-     * @param {object} req - The request object
-     * @param {object} res - The response object
-     * @return {object} JSON object representing success
-     * @memeberof UserController
-  */
-  static async register(req, res) {
-    const {
-      email, password, first_name, last_name,
-    } = req.body;
-    const params = [
-      email,
-      hashSync(password, 10),
-      first_name,
-      last_name,
-    ];
+import bcrypt from 'bcryptjs';
+import { Pool } from 'pg';
 
-    try {
-      const { rows } = await pool.query(createUser, params);
-      const authUser = rows[0];
-      const token = Authentication.createToken(authUser);
-      return res.status(201).json({
-        status: 'sucess',
-        data: { token },
-      });
-    } catch (error) {
-      return res.status(500).json({
-        status: 500,
-        error: error.message,
-      });
-    }
-  }
 
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'bookingserver',
+  password: 'godstime',
+  port: 
+  
   /**
      * Login a user to the application
      * @static
@@ -70,20 +46,52 @@ class UserController {
       return res.status(200).json({
         status: 'success',
         data: {
-          token,
-          first_name,
-          is_admin,
-          last_name,
-          email,
+          message: 'User added successfully',
+          user: {
+            first_name: request.body.first_name,
+            last_name: request.body.last_name,
+            email: request.body.email,
+          },
         },
-      });
-    } catch (error) {
-      return res.status(400).json({
-        status: 'Fail',
-        error: 'An error occurred',
-      });
-    }
-  }
-}
+      },
+      );
+  });
+};
 
-export default UserController;
+// UPDATE A USER
+const updateUser = (request, response) => {
+  const id = parseInt(request.params.id, 10);
+  const hash = bcrypt.hashSync(request.body.password, 10);
+
+  pool.query(
+    'UPDATE users SET "first_name" = $1, "email" = $3, "last_name" = $2 WHERE id = $4',
+    [request.body.first_name, request.body.email, request.body.last_name, hash, id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`User with ID: ${results.id}  modified `);
+    },
+  );
+};
+
+
+// DELETE A USER
+const deleteUser = (request, response) => {
+  const id = parseInt(request.params.id, 10);
+
+  pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).send(`User deleted with ID: ${results.id}`);
+  });
+};
+
+export default {
+  getUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+};

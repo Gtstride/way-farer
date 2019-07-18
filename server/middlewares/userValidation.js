@@ -1,11 +1,13 @@
+/* eslint-disable consistent-return */
 import Validator from 'validatorjs';
 import pool from '../config.js/config';
 import { queryUsersByEmail } from '../config.js/sql';
 
 
-export default class UserValidator {
+class UserValidator {
   static async signUpValidator(req, res, next) {
     let {
+      // eslint-disable-next-line prefer-const
       email, password, first_name, last_name,
     } = req.body;
 
@@ -49,13 +51,13 @@ export default class UserValidator {
   }
 
   /**
-   * Login User to the application
-   * @param {object} req - The request object
-   * @param {object} res - The response object
-   * @param {function} next - Calls the next function/route handler
-   * @returns {object} JSON representing the failure message.
-   */
-  static loginValidator(req, res, next) {
+     * Login User to the application
+     * @param {object} req - The request object
+     * @param {object} res - The response object
+     * @param {function} next - Calls the next function/route handler
+     * @returns {object} JSON representing the failure message.
+     */
+  static async signinValidator(req, res, next) {
     let { email, password } = req.body;
     if (email === undefined) {
       return res.status(400).json({
@@ -112,3 +114,4 @@ export default class UserValidator {
       }));
   }
 }
+export default UserValidator;

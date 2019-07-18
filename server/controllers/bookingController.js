@@ -1,8 +1,7 @@
 import pool from '../config.js/config';
 import {
-  bookTripQuery, getAtripQuery, findAuserQuery, checkBookingsQuery,
-  checkIfBookingExistQuery,
-  getAllBookingsUserQuery, getAllBookingsAdminQuery,
+  // eslint-disable-next-line max-len
+  bookTripQuery, getAtripQuery, findAuserQuery, checkBookingsQuery, checkIfBookingExistQuery, getAllBookingsUserQuery, getAllBookingsAdminQuery,
   deleteBookingQuery, updateBookingQuery, findAbusQuery,
 } from '../config.js/sql';
 
