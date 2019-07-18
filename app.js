@@ -9,7 +9,7 @@ import '@babel/polyfill';
 import userRouter from './server/routes/user';
 import defaultRouter from './server/routes/entry';
 import tripRouter from './server/routes/trip';
-// import bookingRouter from './server/routes/booking';
+import bookingRouter from './server/routes/bookings';
 
 const app = express();
 
@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/v1', userRouter);
 app.use('/api/v1', tripRouter);
+app.use('/api/v1', bookingRouter);
 app.use('/api/v1', defaultRouter);
-// app.use('/api/v1', bookingRouter);
 
 
 const port = process.env.PORT || 5000;
