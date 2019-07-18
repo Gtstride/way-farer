@@ -3,7 +3,7 @@
 /* eslint-disable indent */
 /* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
-
+/*
 import bcrypt from 'bcryptjs';
 import { Pool } from 'pg';
 
@@ -23,6 +23,8 @@ const pool = new Pool({
      * @return {object} JSON object representing success message
      * @memberof UserController
      */
+*/
+/*
   static async login(req, res) {
     try {
       const result = await pool.query(queryUsersByEmail, [req.body.email]);
@@ -95,3 +97,4 @@ export default {
   updateUser,
   deleteUser,
 };
+*/
