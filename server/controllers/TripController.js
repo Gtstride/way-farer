@@ -4,7 +4,7 @@ import { createTrip, getTrip } from '../config.js/sql';
 
 class TripController {
   /**
-     * Create user account on the application
+     * Only the admin can create a trip
      * @static
      * @param {object} req - The request object
      * @param {object} res - The response object
