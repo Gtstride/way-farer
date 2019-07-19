@@ -17,10 +17,8 @@ class BookingValidator {
     } = req.body;
 
     const rules = {
-      user_id: 'integer',
       trip_id: 'integer|required|min:2',
       seat_number: 'min:2|max:4',
-      email: 'string|min:8|max:50',
     };
 
     const validation = new Validator(req.body, rules);
