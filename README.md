@@ -2,27 +2,29 @@
 
 [![Build Status](https://travis-ci.org/Gtstride/way-farer.svg?branch=master)](https://travis-ci.org/Gtstride/way-farer.svg?branch=master)
 [![Coverage Status](https://github.com/Gtstride/way-farer/tree/master)](https://github.com/Gtstride/way-farer/tree/master)
-g
 
 WayFarer is a public bus transportation booking server
 
-## Required Features
+## Minimum Required Features
 
 - User can **sign up**
+- User can **login**
+- Admin can **add a bus for a trip**
+- Admin can **get all bus**
 - Admin can **create a trip**
 - Admin can **cancel a trip**
-- User can **login**
 - Both Admin and Users can **see all trips**
 - Users can **book a seat on a trip**
 - An Admin can **see all bookings** while user can **see all of his/her bookings**
 - Users can **delete their booking**
+
 
 ## Technologies
 
 - Node JS
 - Express
 - Mocha & Chai
-- Validator
+- Validatorjs
 - ESLint
 - Babel
 - Travis CI
@@ -38,7 +40,7 @@ To install and run this project you would need to have listed stack installed:
 
 ```sh
 git clone <https://github.com/Gtstride/way-farer.git>
-cd way-farer
+cd WayFarer-API
 npm install
 npm run start:dev
 ```
@@ -52,12 +54,14 @@ npm test
 ## API-ENDPOINTS
 
 - V1
+
 `- POST /api/v1/auth/signup Create user account`
-`- POST /api/api/v1/auth/signin Signs in a user`
 
-`- POST /api/v1/trips Creates a trip`
+`- POST /api/api/v1/auth/signin Login a user`
 
-`- PATCH /api/v1/trips/<:trip_id> Cancels a trip`
+`- POST /api/v1/trips Create a trip`
+
+`- PATCH /api/v1/trips/<:trip_id> Cancel a trip`
 
 `- GET /api/v1/trips See all trips`
 
@@ -67,24 +71,19 @@ npm test
 
 `- DELETE /api/v1/bookings/<:booking_id> Delete their booking`
 
-`- GET /api/v1/trips?origin=ikoyi Get a list of filtered trips based on origin`
-
-`- GET /api/v1/trips?destination=ikoyi Get a list of filtered trips based on destination`
-
-`- PATCH /api/v1/bookings/<:booking_id> Change seats after booking`
-
 ## Pivotal Tracker stories
 
-[https://www.pivotaltracker.com/n/projects/2359651](https://www.pivotaltracker.com/n/projects/2359651)
+[https://www.pivotaltracker.com/n/projects/2358316](https://www.pivotaltracker.com/n/projects/2358316)
 
 ## API
 
 The API is currently in version 1 (v1) and is hosted at
-[https://way-farer-app1.herokuapp.com/](https://way-farer-app1.herokuapp.com/)
+[https://way-farer-app.herokuapp.com/](https://way-farer-app.herokuapp.com/)
 
 ## API Documentation
 
-[https://way-farer-app1.herokuapp.com/docs/](https://way-farer-app1.herokuapp.com/docs/)
+[https://way-farer-app1.herokuapp.com/api-docs/](https://way-farer-app1.herokuapp.com/api-docs/)
+
 
 ## Author
 

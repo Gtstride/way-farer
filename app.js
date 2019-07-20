@@ -27,7 +27,7 @@ app.use('/api/v1', defaultRouter);
 app.get('/', (req, res) => {
   res.status(200).json({
     status: 200,
-    message: 'Welcome to your one-stop transportation booking site ....',
+    message: 'Welcome to your one-stop transport booking site ....',
   });
 });
 
