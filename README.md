@@ -73,7 +73,7 @@ npm test
 
 ## Pivotal Tracker stories
 
-[https://www.pivotaltracker.com/n/projects/2358316](https://www.pivotaltracker.com/n/projects/2358316)
+[https://www.pivotaltracker.com/n/projects/2359651](https://www.pivotaltracker.com/n/projects/2359651)
 
 ## API
 
