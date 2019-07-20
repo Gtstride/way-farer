@@ -1,6 +1,6 @@
 # Way Farer
 [![Build Status](https://travis-ci.org/Gtstride/way-farer.svg?branch=master)](https://travis-ci.org/Gtstride/way-farer.svg?branch=master)
-[![Coverage Status](https://github.com/Gtstride/way-farer/tree/master)](https://github.com/Gtstride/way-farer/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/Gtstride/way-farer/badge.svg?branch=master)](https://coveralls.io/github/Gtstride/way-farer?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/464ef16e2364150028c4/maintainability)](https://codeclimate.com/github/Gtstride/way-farer/maintainability)
 
 WayFarer is a public bus transportation booking server
