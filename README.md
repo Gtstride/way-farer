@@ -8,16 +8,13 @@ WayFarer is a public bus transportation booking server
 ## Minimum Required Features
 
 - User can **sign up**
-- User can **login**
-- Admin can **add a bus for a trip**
-- Admin can **get all bus**
+- User can **signin**
 - Admin can **create a trip**
 - Admin can **cancel a trip**
 - Both Admin and Users can **see all trips**
 - Users can **book a seat on a trip**
 - An Admin can **see all bookings** while user can **see all of his/her bookings**
 - Users can **delete their booking**
-
 
 ## Technologies
 
