@@ -42,7 +42,7 @@ To install and run this project you would need to have listed stack installed:
 git clone <https://github.com/Gtstride/way-farer.git>
 cd WayFarer-API
 npm install
-npm run start:dev
+npm run start
 ```
 
 ## Testing
@@ -73,16 +73,16 @@ npm test
 
 ## Pivotal Tracker stories
 
-[https://www.pivotaltracker.com/n/projects/2358316](https://www.pivotaltracker.com/n/projects/2358316)
+[https://www.pivotaltracker.com/n/projects/2359651](https://www.pivotaltracker.com/n/projects/2359651)
 
 ## API
 
 The API is currently in version 1 (v1) and is hosted at
-[https://way-farer-app.herokuapp.com/](https://way-farer-app.herokuapp.com/)
+[https://way-farer-app1.herokuapp.com/](https://way-farer-app1.herokuapp.com/)
 
 ## API Documentation
 
-[https://way-farer-app1.herokuapp.com/api-docs/](https://way-farer-app1.herokuapp.com/api-docs/)
+[https://way-farer-app1.herokuapp.com/docs/](https://way-farer-app1.herokuapp.com/docs/)
 
 
 ## Author
