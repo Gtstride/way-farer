@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "WAY-FARER",
-    "description": "Way-Farer: A transport booking server API",
+    "title": "WAY_FARER",
+    "description":  "Way-Farer: A transport booking server API",
     "contact": {}
   },
   "host": "way-farer-app1.herokuapp.com",
@@ -212,7 +212,7 @@
       },
       "post": {
         "description": "Users can book a trip",
-        "summary": "Users can book a trip",
+        "summary": "Users can book a seat on a trip",
         "tags": [
           "Bookings"
         ],
@@ -289,6 +289,104 @@
             "in": "header",
             "required": true,
             "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "Admin can create a trip",
+        "tags": [
+          "Trips"
+        ],
+        "operationId": "TripsPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "origin",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "fare",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "destination",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "trip_date",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "bus_id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "seat_number",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
             "description": ""
           }
         ],
