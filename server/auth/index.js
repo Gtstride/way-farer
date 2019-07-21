@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable indent */
-import express from 'express';
+// import express from 'express';
 // import db from '../dummyDB/db';
+/*
 import { Pool } from 'pg';
 
 import User from '../controllers/users';
@@ -54,3 +55,4 @@ router.post('/signup', (req, res, next) => {
 });
 
 module.exports = router;
+*/
