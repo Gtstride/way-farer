@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "WAY_FARER",
-    "description":  "Way-Farer: A transport booking server API",
+    "title": "Way_Farer",
+    "description": "WAY_FARER: A transport booking server",
     "contact": {}
   },
   "host": "way-farer-app1.herokuapp.com",
@@ -132,19 +132,27 @@
         }
       }
     },
-    "/bookings/{booking_id}": {
+    "/bookings/{{booking:id}}": {
       "delete": {
         "description": "TODO: Add Description",
         "summary": "Users can delete their booking",
         "tags": [
           "Bookings"
         ],
-        "operationId": "BookingsByBookingIdDelete",
+        "operationId": "BookingsBookingIdDelete",
         "deprecated": false,
         "produces": [
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "{booking:id}",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
           {
             "name": "Content-Type",
             "in": "header",
@@ -155,13 +163,6 @@
           {
             "name": "token",
             "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "booking_id",
-            "in": "path",
             "required": true,
             "type": "string",
             "description": ""
@@ -178,7 +179,7 @@
     "/bookings": {
       "get": {
         "description": "TODO: Add Description",
-        "summary": "Admin can view all bookings",
+        "summary": "Admin can view all bookings, while users can see his/her bookings",
         "tags": [
           "Bookings"
         ],
