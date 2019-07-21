@@ -15,7 +15,7 @@ class TripController {
     if (!req.user.is_admin) {
       return res.status(403).json({
         status: 'error',
-        error: 'unauthorized user',
+        error: 'Unauthorized user',
       });
     }
     const {
@@ -35,7 +35,7 @@ class TripController {
       const { rows } = await pool.query(createTrip, params);
 
       return res.status(201).json({
-        status: 'sucess',
+        status: 'success',
         data: rows[0],
       });
     } catch (error) {
@@ -83,7 +83,7 @@ class TripController {
     if (!req.user.is_admin) {
       return res.status(403).json({
         status: 'error',
-        error: 'unauthorized user',
+        error: 'Unauthorized user',
       });
     }
 
@@ -93,7 +93,7 @@ class TripController {
       if (!rows[0]) {
         return res.status(404).json({
           status: 'error',
-          error: 'No trip found',
+          error: 'No trip with such id found',
         });
       }
       return res.status(200).json({
@@ -105,7 +105,7 @@ class TripController {
     } catch (error) {
       return res.status(400).json({
         status: 'error',
-        error: 'An error occurred',
+        error: 'An error occurred: Please check details provided and try again.',
       });
     }
   }
